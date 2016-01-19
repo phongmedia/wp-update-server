@@ -87,3 +87,4 @@
 [2016-01-19 20:37:38 +0000] 127.0.0.1      	GET 	get_metadata	artdroid	-	-	-	action=get_metadata&slug=artdroid
 [2016-01-19 20:52:40 +0000] 127.0.0.1      	GET 	get_metadata	artdroid	-	-	-	action=get_metadata&slug=artdroid
 [2016-01-19 23:01:40 +0000] 127.0.0.1      	GET 	get_metadata	artdroid	-	-	-	action=get_metadata&slug=artdroid
+[2016-01-19 23:03:32 +0000] 127.0.0.1      	GET 	get_metadata	artdroid	-	-	-	action=get_metadata&slug=artdroid
