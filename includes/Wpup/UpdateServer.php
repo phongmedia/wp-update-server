@@ -121,6 +121,12 @@ class Wpup_UpdateServer {
 		}
 
 		try {
+			/**
+			 * PHONG
+			 * Pass the whole request here, and handle filtering downstream.
+			 * When filtering, first define the package url in the new obj
+			 * Then cherry pick it back out...
+			 */
 			$request->package = $this->findPackage($request->slug);
 		} catch (Wpup_InvalidPackageException $ex) {
 			$this->exitWithError(sprintf(
@@ -234,6 +240,21 @@ class Wpup_UpdateServer {
 		//Check if there's a slug.zip file in the package directory.
 		$safeSlug = preg_replace('@[^a-z0-9\-_\.,+!]@i', '', $slug);
 		$filename = $this->packageDirectory . '/' . $safeSlug . '.zip';
+
+		/**
+		 * PHONG
+		 */
+		// Use a filter which passes an array of data here, including slug, request, etc. 
+		//$filename = apply_filters( 'updateserver_filename_from_slug', $filename );
+
+		// Here impliment custom filter based on the slug
+		// Make the 'slug' the theme, which has child 'theme versions'
+		// Select the latest theme version, and serve filename based on that
+
+		// Test
+		$filename = "/Users/phong/Projects/Artdroid/_WWW/wp-content/plugins/wp-updater/packages/artdroid.zip";
+
+
 		if ( !is_file($filename) || !is_readable($filename) ) {
 			return null;
 		}
