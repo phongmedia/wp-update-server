@@ -177,12 +177,19 @@ class Wpup_ZipMetadataParser {
 	 * it by setting the "Details URI" header, we'll default to the theme homepage ("Theme URI").
 	 */
 	protected function setThemeDetailsUrl() {
-
-		pw_log( 'this->metadata', $this->metadata );
-
-		if ( $this->packageInfo['type'] === 'theme' &&  !isset($this->metadata['details_url']) && isset($this->metadata['homepage']) ){
+		/**
+		 * Add the previously generated details url
+		 * To the meta data, so that the actual post
+		 */
+		global $WP_Updater_Data;
+		$this->metadata['details_url'] = $WP_Updater_Data['package']['details_url'];
+	
+		/* // Legacy Code
+		if ( $this->packageInfo['type'] === 'theme' &&
+			!isset($this->metadata['details_url']) &&
+			isset($this->metadata['homepage']) )
 			$this->metadata['details_url'] = $this->metadata['homepage'];
-		}
+		*/
 		
 	}
 
