@@ -271,6 +271,8 @@ class Wpup_UpdateServer {
 	 * @param Wpup_Request $request
 	 */
 	protected function logRequest($request) {
+		$request = $this->filterLogRequest($request);
+		
 		$logFile = $this->logDirectory . '/request.log';
 		$handle = fopen($logFile, 'a');
 		if ( $handle && flock($handle, LOCK_EX) ) {
@@ -299,6 +301,17 @@ class Wpup_UpdateServer {
 		if ( $handle ) {
 			fclose($handle);
 		}
+	}
+
+	/**
+	 * Adjust or do additional operations with log request.
+	 * Intended to be overridden in child classes.
+	 *
+	 * @param array $request The incoming request.
+	 * @return array
+	 */
+	protected function filterLogRequest($request) {
+		return $request;
 	}
 
 	/**
